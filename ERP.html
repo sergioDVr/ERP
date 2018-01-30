@@ -2,13 +2,75 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>ERP</title>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/micss.css">
 </head>
 <body>
-    <h1>Practica ERP</h1>
-    <script src="js/BaseException.js"></script>
-    <script src="js/ObjectsStoreHouse.js"></script>
-    <script src="js/StoreHouse.js"></script>
-    <script src="js/Test.js"></script>
+<header>
+    <div id="divTittle" class="text-center">
+        <p id="titulo">
+
+        </p>
+    </div>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid" id="navegador">
+            <div class="navbar-header">
+                <a class="navbar-brand" id="botonPrincipal" onclick=initPopulate() href="#">Tiendas</a>
+            </div>
+            <ul class="nav navbar-nav" id="ulTiendas">
+            </ul>
+            <div class="navbar-header pull-right">
+                <a class="navbar-brand" id="botonGlobales" onclick=globalProductPopulate() href="#">Productos Globales</a>
+            </div>
+        </div>
+    </nav>
+</header>
+<div class="container" id="tiendas">
+    <div id="princi" class="row">
+        <p id="inicio" class="text-center">
+            Pulsa en tiendas para iniciar la aplicación o sobre Productos Globales para ver los productos de forma global.
+        </p>
+    </div>
+</div>
+<div class="container-fluid" id="tienda-productos">
+    <div class="row">
+        <div class="col-md-4">
+            <div id="infoTienda">
+                <h2 id="nombreTienda" class="text-center"></h2>
+                <img src="" id="fotoTienda" class="img-responsive img-rounded">
+                <p class="info">Descripción: </p>
+                <p id="descripcion"></p>
+                <p class="info">Telefono: </p>
+                <p id="telefonoTienda"></p>
+                <p class="info">Dirección: </p>
+                <p id="direccion"></p>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div id="seccion"></div>
+            <div class="row" id="productos">
+
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="container" id="productosGlobales">
+    <div class="row" id="productosGlobal">
+
+    </div>
+</div>
+<footer class="text-center">
+    <div id="misdatos">Sergio Santos Martín-Nieto, <span id="azul">2DAW</span></div>
+</footer>
+<script src="js/jquery-3.2.1.js" charset="UTF-8"></script>
+<script src="js/bootstrap.min.js" charset="UTF-8"></script>
+<script src="js/BaseException.js" charset="UTF-8"></script>
+<script src="js/ObjectsStoreHouse.js" charset="UTF-8"></script>
+<script src="js/StoreHouse.js" charset="UTF-8"></script>
+<script src="js/init.js" charset="UTF-8"></script>
+<script src="js/populate.js" charset="UTF-8"></script>
 </body>
 </html>

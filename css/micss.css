@@ -1,0 +1,142 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,700');
+body{
+    background-color: #cce2ea;
+    font-family: 'Roboto', sans-serif;
+}
+#divTittle{
+    background-color: #2b669a;
+}
+#titulo{
+    font-size: 3.7em;
+    margin: 0px;
+    font-weight: 700;
+    color: #121578;
+
+}
+#inicio{
+    font-size: 2em;
+    color: #2b669a;
+}
+.tienda{
+    height: 300px;
+    border: 1px solid #1b6d85;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    background-color: white;
+    padding-left: 10px;
+    padding-right: 10px;
+    text-align: center;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out 0.1s;
+}
+.tienda:hover{
+    transform: scale(1.1);
+
+}
+.separacion{
+    margin-top: 30px;
+}
+.sub-secciones{
+    padding: 5px;
+    width: 200px;
+    position: absolute; top: 100%; left: 0px;
+    background-color: #f8f8f8;
+    font-family: arial;
+    display:none;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    overflow: hidden;
+}
+.sub-secciones a{
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.sub-secciones a:hover {background-color: #f1f1f1}
+footer{
+    margin-top: 50px;
+    height: 80px;
+    background-color: #3c3c3c;
+    font-style: italic;
+    font-size: 1.5em;
+    color: white;
+}
+#misdatos{
+    position: relative;
+    top: 20px;
+}
+#azul{
+    color: #2b669a;
+}
+.claseProduct{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 8px;
+    background-color: #2b669a;
+    cursor: pointer;
+    color: #9dd6ea;
+
+}
+.imagenProduct{
+    width: 80%;
+}
+.cabeceraProduct{
+    width: 100%;
+    padding: 5px;
+    font-size: 1.5em;
+}
+#tienda-productos{
+    display: none;
+}
+#infoTienda{
+    background-color: #121578;
+    color: #9acfea;
+    padding: 15px;
+    border-radius: 8px;
+}
+#fotoTienda{
+    width: 100%;
+    margin: 30px 0px;
+}
+#seccion{
+    font-size: 1.6em;
+    padding: 5px;
+}
+.info{
+    color: #4886d5;
+}
+#nombreTienda{
+    font-weight: 700;
+    color: #4886d5;
+    font-size: 2.5em;
+}
+.precio{
+    font-size: 1.3em;
+    color: white;
+    padding:8px;
+}
+.globalProducto{
+    height: 200px;
+}
+.tiendasTabla{
+    text-align: center;
+    font-size: 1.3em;
+    background-color: #718b9a;
+}
+.productoTabla{
+    background-color: #1b6d85;
+    color: white;
+    font-size: 1.5em;
+    text-align: center;
+}
+.table{
+    background-color: white;
+}
+td{
+    padding: 5px;
+}
+.totalTabla{
+    font-size: 1.3em;
+}

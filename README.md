@@ -1,5 +1,5 @@
 # ERP
-Version 1.0
+Version 2.0
 
-       Implementación de un ERP en JavaScript y verificación de funcionamiento en modo consola.
-       Ademas de los metodos obligatorios he añadido alguno mas.
+       Añadida la funcionalidad basica de visualización de nuestro ERP en navegador, utilizando DOM.
+       Tambien he añadido el ejercicio dos de un menu desplegable en modo cortinilla.

@@ -114,6 +114,18 @@ var Product = (function() {
             if (_images[i].name === name) _images.splice(i, 1);
         }
     }
+    var _imagen;
+        //Setter y getter de imagen
+        Object.defineProperty(this, 'imagen', {
+            get:function(){
+                return _imagen;
+            },
+            set:function(imagen){
+                imagen = imagen.trim();
+                if (imagen === 'undefined') throw new EmptyValueException("imagen");
+                _imagen = imagen;
+            }
+        });
     }
 
     return Product;
@@ -205,6 +217,32 @@ function Shoes(name, price, size, gender) {
 }
 Shoes.prototype = Object.create(Clothes.prototype);
 Shoes.prototype.constructor=Shoes;
+//We define the camiseta Object.
+function Camiseta(name, price, size) {
+
+    //If the Pants is not invoked with the new operator, throw a error.
+    if(!(this instanceof Camiseta)) throw new InvalidAccessConstructorException();
+
+    //We call the super-constructor method.
+    Clothes.call(this,name, price, "Unisex");
+
+    //We check that obligatory variables are not empty and meet the requirements.
+    if(size==="undefined"||size==="")throw new EmptyValueException("SerialNumber");
+    //We check that the size is valid.
+    if(size<20||size>48)throw new InvalidValueException("size","the size is between 20 and 48");
+
+    //We defined the size property.
+    var _size = size;
+    //We define the getter _size property;
+    Object.defineProperty(this, "size", {
+        get: function() {
+            return _size;
+        }
+    });
+
+}
+Camiseta.prototype = Object.create(Clothes.prototype);
+Camiseta.prototype.constructor=Camiseta;
 
 //Objeto Categoria donde se almacena un titulo para esta y una descripción.
 function Category(title = "Anon"){
@@ -256,7 +294,21 @@ function Shop(nif, name) {
     var _name = name;
     var _telefono;
     var _direccion;
+    var _imagen;
     var _coordenadas;
+    var _descripcion;
+
+    //Setter y getter de nif
+    Object.defineProperty(this, 'descripcion', {
+        get:function(){
+            return _descripcion;
+        },
+        set:function(descripcion){
+            descripcion = descripcion.trim();
+            if (descripcion === 'undefined') throw new EmptyValueException("descripcion");
+            _descripcion = descripcion;
+        }
+    });
 
     //Setter y getter de nif
     Object.defineProperty(this, 'nif', {
@@ -315,6 +367,18 @@ function Shop(nif, name) {
             coordenadas = coordenadas.trim();
             if (coordenadas === 'undefined') throw new EmptyValueException("coordenadas");
             _coordenadas = coordenadas;
+        }
+    });
+
+    //Setter y getter de imagen
+    Object.defineProperty(this, 'imagen', {
+        get:function(){
+            return _imagen;
+        },
+        set:function(imagen){
+            imagen = imagen.trim();
+            if (imagen === 'undefined') throw new EmptyValueException("imagen");
+            _imagen = imagen;
         }
     });
 

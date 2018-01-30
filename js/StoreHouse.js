@@ -511,6 +511,112 @@ var StoreHouse = (function () { //La función anónima devuelve un método getIn
                     }
                 }
             }
+            //Metodo para devoler una tienda según su ID.
+            this.getShopId = function (id) {
+                var iteraTiendas = this.getShops;
+                var epo = iteraTiendas.next();
+
+                while (!epo.done) {
+                    if (epo.value.nif == id) {
+                        return epo.value;
+                    }
+                    epo = iteraTiendas.next();
+                }
+            }
+            //Metodo para devolver las categorias de una tienda.
+            this.getCategorysShop = function (shop) {
+
+                if (!shop instanceof Shop || shop == null) throw new ShopStoreHouseException();
+                var posicionTienda = positionShop(shop);
+
+                if (posicionTienda == -1) {
+                    throw new ShopNotExistStoreHouseException();
+                } else {
+
+                    var arraProductShop;
+                    var arrayCategoriasTienda = [];
+                    arraProductShop = _shops[posicionTienda].product.filter(function (producto) {
+                        return _productos.findIndex(function (objeto2) {
+                            return (objeto2.serialNumber == producto.product);
+                        }) != -1;
+                    })
+                    for (var i = 0; i < _categories.length; i++) {
+
+                        var arra = _categories[i].product.filter(function (producto) {
+                            return arraProductShop.findIndex(function (objeto2) {
+                                return (objeto2.product == producto);
+                            }) != -1;
+                        })
+                        if (arra.length > 0) {
+                            console.log("hola");
+                            arrayCategoriasTienda.push(_categories[i].category);
+                        }
+                    }
+                    return arrayCategoriasTienda;
+
+                }
+            }
+            //Método para devolver todos los productos de una tiendas filtrados por categoria.
+            this.getCategorysProductsShop = function (shop, category) {
+                if (!shop instanceof Shop || shop == null) throw new ShopStoreHouseException();
+                if (!(category instanceof Category) || (category == null)) throw new CategoryStoreHouseException();
+                var posicionTienda = positionShop(shop);
+
+                if (posicionTienda == -1) {
+                    throw new ShopNotExistStoreHouseException();
+                } else {
+                    var position = positionCategory(category);
+                    if (position != -1) {
+                        var posicionCategoria = positionCategory(category);
+                        var arrayProductosCategoriaTienda = _categories[posicionCategoria].product.filter(function (producto) {
+                            return _shops[posicionTienda].product.findIndex(function (objeto2) {
+                                return (objeto2.product == producto);
+                            }) != -1;
+                        })
+                        var arraADevolver1 = _productos.filter(function (producto) {
+                            return arrayProductosCategoriaTienda.findIndex(function (serial) {
+                                return serial == producto.serialNumber;
+                            }) != -1;
+                        })
+                        var arrayADevolver = [];
+                        for (var i = 0; i < arrayProductosCategoriaTienda.length; i++) {
+                            for (var j = 0; j < _shops[posicionTienda].product.length; j++) {
+                                if (_shops[posicionTienda].product[j].product == arrayProductosCategoriaTienda[i]) {
+                                    arrayADevolver.push({
+                                        product: arraADevolver1[i],
+                                        stock: _shops[posicionTienda].product[j].stock
+                                    });
+                                }
+                            }
+                        }
+                        return arrayADevolver;
+                    } else {
+                        throw new CategoryNotExistStoreHouseException();
+                    }
+                }
+            }
+            this.globalProduct =  function(){
+                var productos =[];
+
+                for(var i = 0; i<_productos.length;i++){
+                    for(var j = 0; j<_shops.length;j++){
+                        var index;
+                        if((index =_shops[j].product.findIndex(function (objeto) {
+                                return objeto.product == _productos[i].serialNumber;
+                            }))!=-1){
+                            var index2;
+                            if((index2 = productos.findIndex(function (objeto) {
+                                    return objeto.product.serialNumber==_shops[j].product[index].product;
+                                }))==-1){
+                                productos.push({product :_productos[i],tiendas: [{shop:_shops[j].shop, stock : _shops[j].product[index].stock}]})
+                            }else{
+                                productos[index2].tiendas.push({shop:_shops[j].shop, stock : _shops[j].product[index].stock});
+                            }
+                        }
+                    }
+                }
+                return productos;
+            }
 
             //Tienda por defecto.
             var _defaultShop = new Shop("00A", "Shop default");
@@ -525,6 +631,7 @@ var StoreHouse = (function () { //La función anónima devuelve un método getIn
 
         return new StoreHouse();
     }
+
 
     return {
         // Devuelve un objeto con el método getInstance

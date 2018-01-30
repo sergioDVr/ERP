@@ -76,11 +76,11 @@ console.log("Mostramos los productos en nuestra StoreHouse otra vez introducidos
 //Nos creamos un par de tiendas.
 
 var tienda1 = new Shop("t1", "tienda1");
-var tienda2 = new Shop("t2", "tienda2");
+var PaB = new Shop("t2", "PaB");
 
 //Las añadimos
 
-instancia.addShops(tienda1, tienda2);
+instancia.addShops(tienda1, PaB);
 
 //Mostramos las tiendas
 
@@ -89,24 +89,24 @@ console.log("Mostramos las tiendas en StoreHouse una vez introducidas: " + recor
 //Añadimos productos a las tiendas
 
 console.log("La tienda 1 tiene el numero de elementos: " + instancia.addProductInShop(pantalonMascu, tienda1, 30));
-console.log("La tienda 2 tiene el numero de elementos: " + instancia.addProductInShop(pantalonMascu, tienda2, 500));
-console.log("La tienda 2 tiene el numero de elementos: " + instancia.addProductInShop(pantalonFeme, tienda2, 100));
+console.log("La tienda 2 tiene el numero de elementos: " + instancia.addProductInShop(pantalonMascu, PaB, 500));
+console.log("La tienda 2 tiene el numero de elementos: " + instancia.addProductInShop(pantalonFeme, PaB, 100));
 console.log("La tienda 1 tiene el numero de elementos: " + instancia.addProductInShop(zapato, tienda1, 20));
-console.log("La tienda 2 tiene el numero de elementos: " + instancia.addProductInShop(zapato, tienda2, 50));
-console.log("La tienda 2 tiene el numero de elementos: " + instancia.addProductInShop(zapato3, tienda2, 60));
+console.log("La tienda 2 tiene el numero de elementos: " + instancia.addProductInShop(zapato, PaB, 50));
+console.log("La tienda 2 tiene el numero de elementos: " + instancia.addProductInShop(zapato3, PaB, 60));
 
 
 //Añadimos stock a los productos de nustras tiendas
 console.log("Añadimos 10 pantalones masculinos a la tienda 1: " + instancia.addQuantityProductInShop(pantalonMascu, tienda1, 10));
-console.log("Añadimos 50 pantalones masculinos a la tienda 2: " + instancia.addQuantityProductInShop(pantalonMascu, tienda2, 50));
-console.log("Añadimos 22 pantalones femeninos a la tienda 2: " + instancia.addQuantityProductInShop(pantalonFeme, tienda2, 22));
+console.log("Añadimos 50 pantalones masculinos a la tienda 2: " + instancia.addQuantityProductInShop(pantalonMascu, PaB, 50));
+console.log("Añadimos 22 pantalones femeninos a la tienda 2: " + instancia.addQuantityProductInShop(pantalonFeme, PaB, 22));
 
 //Miramos que productos tenemos en cada tienda.
 console.log("En la tienda por defecto deberemos tener todos los objetos alojados: " + recorrerIteraProductosTienda(instancia.getShopProducts(instancia.defaultShop)));
 console.log("En la tienda uno tenemos los productos: " + recorrerIteraProductosTienda(instancia.getShopProducts(tienda1)));
 console.log("En la tienda uno tenemos los productos: " + recorrerIteraProductosTienda(instancia.getShopProducts(tienda1)));
-console.log("En la tienda 2 dos tenemos los productos: " + recorrerIteraProductosTienda(instancia.getShopProducts(tienda2)));
-console.log("En la tienda 2 dos tenemos los productos filtrados por zapatos: " + recorrerIteraProductosTienda(instancia.getShopProducts(tienda2, Shoes)));
+console.log("En la tienda 2 dos tenemos los productos: " + recorrerIteraProductosTienda(instancia.getShopProducts(PaB)));
+console.log("En la tienda 2 dos tenemos los productos filtrados por zapatos: " + recorrerIteraProductosTienda(instancia.getShopProducts(PaB, Shoes)));
 
 function recorrerItera(instancia) {
     var epo = instancia.next();
