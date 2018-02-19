@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,700');
+body{
+    font-family: 'Roboto', sans-serif;
+    background-color: rgba(75, 151, 169, 0.44);
+}
+#nombreProducto{
+    color: #f8f8f8;
+    font-weight: 700;
+}
+header{
+    padding: 5px;
+    background-color: #31b0d5;
+}
+main{
+    margin-top: 30px;
+    font-size: 1.5em;
+}
+#precio{
+    color: #f5eb6c;
+    font-size: 1.8em;
+}
+#descripcion{
+    text-align: justify;
+    font-size: 0.8em;
+}
+#stock{
+   color: #843534;
+}

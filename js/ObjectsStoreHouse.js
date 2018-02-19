@@ -67,7 +67,7 @@ var Product = (function() {
             if (_description === "undefined") throw UninitializedPropertyException("description");
             return _description;
         },
-        setter: function (description) {
+        set: function (description) {
             if (description === "undefined" || description === "") throw new EmptyValueException("description");
             _description = description;
         }
@@ -81,7 +81,7 @@ var Product = (function() {
             if (_tax === "undefined") throw UninitializedPropertyException("tax");
             return _tax;
         },
-        setter: function (tax) {
+        set: function (tax) {
             if (tax === "undefined" || tax === "") throw new EmptyValueException("tax");
             _tax = tax;
         }
@@ -147,8 +147,6 @@ function Clothes(name, price, gender) {
 
     //We check that obligatory variables are not empty and meet the requirements.
     if(gender==="undefined"||gender==="")throw new EmptyValueException("Gender");
-    var posibilidadesGenero = ["Masculino","Unisex","Femenino"];
-    if(posibilidadesGenero.indexOf(gender)==-1) throw InvalidValueException("Gender","Masculino, Femenino, Unisex");
 
     //We defined the gender property.
     var _gender = gender;
@@ -201,7 +199,7 @@ function Shoes(name, price, size, gender) {
 
     //We check that obligatory variables are not empty and meet the requirements.
     if(size==="undefined"||size==="")throw new EmptyValueException("SerialNumber");
-    if(gender==="undefined"||gender==="")throw new EmptyValueException("SerialNumber");
+    if(gender==="undefined"||gender==="")throw new EmptyValueException("gender");
     //We check that the size is valid.
     if(size<20||size>48)throw new InvalidValueException("size","the size is between 20 and 48");
 
@@ -218,7 +216,7 @@ function Shoes(name, price, size, gender) {
 Shoes.prototype = Object.create(Clothes.prototype);
 Shoes.prototype.constructor=Shoes;
 //We define the camiseta Object.
-function Camiseta(name, price, size) {
+function Camiseta(name, price, size, gender) {
 
     //If the Pants is not invoked with the new operator, throw a error.
     if(!(this instanceof Camiseta)) throw new InvalidAccessConstructorException();
@@ -230,7 +228,7 @@ function Camiseta(name, price, size) {
     if(size==="undefined"||size==="")throw new EmptyValueException("SerialNumber");
     //We check that the size is valid.
     if(size<20||size>48)throw new InvalidValueException("size","the size is between 20 and 48");
-
+    if(gender==="undefined"||gender==="")throw new EmptyValueException("gender");
     //We defined the size property.
     var _size = size;
     //We define the getter _size property;
@@ -330,7 +328,7 @@ function Shop(nif, name) {
         set:function(name){
             name = name.trim();
             if (name === 'undefined') throw new EmptyValueException("name");
-            _nif = name;
+            _name = name;
         }
     });
 

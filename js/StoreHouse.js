@@ -282,6 +282,18 @@ var StoreHouse = (function () { //La función anónima devuelve un método getIn
                     }
                 }
             }
+            //Metodo para devoler una categoria según su titulo.
+            this.getCategoriId = function (id) {
+                var iteraTiendas = this.getCategorys;
+                var epo = iteraTiendas.next();
+
+                while (!epo.done) {
+                    if (epo.value.title == id) {
+                        return epo.value;
+                    }
+                    epo = iteraTiendas.next();
+                }
+            }
 
             //Categoría por defecto.
             var _defaultCategory = new Category("Anonymous category"); //Categoría por defecto
@@ -300,21 +312,21 @@ var StoreHouse = (function () { //La función anónima devuelve un método getIn
             this.addProduct = function () {
                 //Miramos que la posicion 1 y dos de los parametros minimo sean un producto y una categoria
                 if (!arguments[0] instanceof Product || arguments[0] == null) throw new ProductStoreHouseException();
-                if (!arguments[1] instanceof Category) throw new CategoryStoreHouseException();
+                if (!arguments[1][0] instanceof Category) throw new CategoryStoreHouseException();
 
                 if (positionProduct(arguments[0]) == -1) {
                     //Si no existe el producto lo añadimos al array y lo añadimos a la tienda por defecto.
                     _productos.push(arguments[0]);
                     this.addProductInShop(arguments[0], _defaultShop, 0);
                     //y añadimos el producto a cada una de las categorias que tengamos si la categoria no existe la añadimos junto con el producto
-                    var numCategorys = arguments.length;
-                    for (var i = 1; i < numCategorys; i++) {
-                        if (!arguments[i] instanceof Category) throw new CategoryStoreHouseException();
+                    var numCategorys = arguments[1].length;
+                    for (var i = 0; i < numCategorys; i++) {
+                        if (!arguments[1][i] instanceof Category) throw new CategoryStoreHouseException();
 
-                        var position = positionCategory(arguments[i]);
+                        var position = positionCategory(arguments[1][i]);
                         if (position == -1) {
                             _categories.push({
-                                category: arguments[i],
+                                category: arguments[1][i],
                                 product: [arguments[0].serialNumber]
                             });
                         } else {
@@ -404,7 +416,7 @@ var StoreHouse = (function () { //La función anónima devuelve un método getIn
                 if (!shop instanceof Shop || shop == null) throw new ShopStoreHouseException();
                 var position = positionShop(shop);
                 if (position != -1) {
-                    _shops.slice(position, 1);
+                    _shops.splice(position, 1);
                     return _shops.length
                 } else {
                     throw new ShopNotExistStoreHouseException();
@@ -497,11 +509,10 @@ var StoreHouse = (function () { //La función anónima devuelve un método getIn
                         arrayADevolver[i] = {
                             product: _productos[_productos.findIndex(function (producto) {
                                 return producto.serialNumber == arraProductShop[i].product;
-                            })], stock: arraProductShop[i].product
+                            })], stock: arraProductShop[i].stock
                         }
                     }
                     var nextIndex = 0;
-
                     return {
                         next: function () {
                             return nextIndex < arrayADevolver.length ?
@@ -523,6 +534,7 @@ var StoreHouse = (function () { //La función anónima devuelve un método getIn
                     epo = iteraTiendas.next();
                 }
             }
+
             //Metodo para devolver las categorias de una tienda.
             this.getCategorysShop = function (shop) {
 
@@ -548,7 +560,6 @@ var StoreHouse = (function () { //La función anónima devuelve un método getIn
                             }) != -1;
                         })
                         if (arra.length > 0) {
-                            console.log("hola");
                             arrayCategoriasTienda.push(_categories[i].category);
                         }
                     }

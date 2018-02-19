@@ -11,14 +11,13 @@ body{
     margin: 0px;
     font-weight: 700;
     color: #121578;
-
+    display: inline;
 }
 #inicio{
     font-size: 2em;
     color: #2b669a;
 }
 .tienda{
-    height: 300px;
     border: 1px solid #1b6d85;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     background-color: white;
@@ -26,12 +25,6 @@ body{
     padding-right: 10px;
     text-align: center;
     border-radius: 10px;
-    cursor: pointer;
-    transition: transform 0.3s ease-in-out 0.1s;
-}
-.tienda:hover{
-    transform: scale(1.1);
-
 }
 .separacion{
     margin-top: 30px;
@@ -77,6 +70,11 @@ footer{
     background-color: #2b669a;
     cursor: pointer;
     color: #9dd6ea;
+    transition: transform 0.3s ease-in-out 0.1s;
+
+}
+.claseProduct:hover{
+    transform: scale(1.1);
 
 }
 .imagenProduct{
@@ -103,6 +101,7 @@ footer{
 #seccion{
     font-size: 1.6em;
     padding: 5px;
+    margin-bottom: 30px;
 }
 .info{
     color: #4886d5;
@@ -116,9 +115,6 @@ footer{
     font-size: 1.3em;
     color: white;
     padding:8px;
-}
-.globalProducto{
-    height: 200px;
 }
 .tiendasTabla{
     text-align: center;
@@ -139,4 +135,69 @@ td{
 }
 .totalTabla{
     font-size: 1.3em;
+}
+#botoncerrar{
+    position: relative;
+    float: right;
+    top: 20px;
+    right: 20px;
+}
+#validacion{
+    float: left;
+    width: auto;
+    position: relative;
+    top: 20px;
+    display: none;
+}
+#validado{
+    float: left;
+    width: auto;
+    position: relative;
+    top: 20px;
+    left: 20px;
+    font-size: 1.5em;
+    display: none;
+}
+#nombre{
+    display: inline;
+}
+#errores{
+    color: red;
+}
+.categoria{
+    border: 1px solid #1b6d85;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    background-color: white;
+    padding-left: 10px;
+    padding-right: 10px;
+    text-align: center;
+    border-radius: 10px;
+}
+.botonesAnaElimi{
+    margin: 15px;
+    display: flex;
+    justify-content: space-between;
+}
+.navbar-brand:hover{
+    cursor: pointer;
+}
+#errorFormTiendas, #errorFormCategorias{
+    color: red;
+}
+.flexTiendas{
+    display: flex;
+    justify-content: space-between;
+    margin: 10px;
+}
+.divanapro{
+    margin-bottom: 20px;
+}
+td:nth-child(2), th:nth-child(2){
+    text-align: right;
+}
+tr:last-child{
+    background-color: #f5eb6c;
+}
+tr:first-child>td:first-child{
+    text-align: left;
 }

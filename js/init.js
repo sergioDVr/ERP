@@ -31,6 +31,17 @@ function init() {
     mayasHombre.imagen="imagenes/productos/mayasHombre.jpg";
     mayasMujer.imagen= "imagenes/productos/mayasMujer.jpg";
 
+    //Les añadims una descripcion
+    pantalonUni.description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque beatae consequatur culpa cum dolores eveniet id illo, magni maiores nemo neque odio officia perferendis provident, unde ut voluptate voluptatem. Facilis!";
+    pantalonMascu.description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque beatae consequatur culpa cum dolores eveniet id illo, magni maiores nemo neque odio officia perferendis provident, unde ut voluptate voluptatem. Facilis!";
+    pantalonFeme.description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque beatae consequatur culpa cum dolores eveniet id illo, magni maiores nemo neque odio officia perferendis provident, unde ut voluptate voluptatem. Facilis!";
+    zapatoUni.description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque beatae consequatur culpa cum dolores eveniet id illo, magni maiores nemo neque odio officia perferendis provident, unde ut voluptate voluptatem. Facilis!";
+    zapatoMascu.description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque beatae consequatur culpa cum dolores eveniet id illo, magni maiores nemo neque odio officia perferendis provident, unde ut voluptate voluptatem. Facilis!";
+    zapatoFeme.description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque beatae consequatur culpa cum dolores eveniet id illo, magni maiores nemo neque odio officia perferendis provident, unde ut voluptate voluptatem. Facilis!";
+    camiNiño.description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque beatae consequatur culpa cum dolores eveniet id illo, magni maiores nemo neque odio officia perferendis provident, unde ut voluptate voluptatem. Facilis!";
+    mayasHombre.description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque beatae consequatur culpa cum dolores eveniet id illo, magni maiores nemo neque odio officia perferendis provident, unde ut voluptate voluptatem. Facilis!";
+    mayasMujer.description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque beatae consequatur culpa cum dolores eveniet id illo, magni maiores nemo neque odio officia perferendis provident, unde ut voluptate voluptatem. Facilis!";
+
     //CATEGORIAS
     var categoriaModa = new Category("Moda");
     var categoriaFemenina = new Category("ModaFemenina");
@@ -39,19 +50,28 @@ function init() {
     var categoriaDepFemenio = new Category("Deporte Femenino");
     var categoriaDepMasculino = new Category("Deporte Masculino");
     var categoriaDepNiño = new Category("Deporte Niños");
+
+    //Les añadimos una descripcion a las categorias
+    categoriaModa.description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque beatae consequatur culpa cum dolores eveniet id illo, magni maiores nemo neque odio officia perferendis provident, unde ut voluptate voluptatem. Facilis!";
+    categoriaFemenina.description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque beatae consequatur culpa cum dolores eveniet id illo, magni maiores nemo neque odio officia perferendis provident, unde ut voluptate voluptatem. Facilis!";
+    categoriaMasculina.description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque beatae consequatur culpa cum dolores eveniet id illo, magni maiores nemo neque odio officia perferendis provident, unde ut voluptate voluptatem. Facilis!";
+    categoriaDeporte.description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque beatae consequatur culpa cum dolores eveniet id illo, magni maiores nemo neque odio officia perferendis provident, unde ut voluptate voluptatem. Facilis!";
+    categoriaDepFemenio.description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque beatae consequatur culpa cum dolores eveniet id illo, magni maiores nemo neque odio officia perferendis provident, unde ut voluptate voluptatem. Facilis!";
+    categoriaDepMasculino.description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque beatae consequatur culpa cum dolores eveniet id illo, magni maiores nemo neque odio officia perferendis provident, unde ut voluptate voluptatem. Facilis!";
+    categoriaDepNiño.description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque beatae consequatur culpa cum dolores eveniet id illo, magni maiores nemo neque odio officia perferendis provident, unde ut voluptate voluptatem. Facilis!";
     //Las añadimos
     instancia.addCategories(categoriaModa, categoriaFemenina, categoriaMasculina, categoriaDeporte, categoriaDepFemenio,categoriaDepMasculino);
 
     //AÑADIMOS LOS PRODUCTOS A LAS CATEGORIAS
-    instancia.addProduct(pantalonUni, categoriaModa);
-    instancia.addProduct(pantalonFeme, categoriaModa, categoriaFemenina);
-    instancia.addProduct(pantalonMascu, categoriaModa, categoriaMasculina);
-    instancia.addProduct(zapatoUni, categoriaModa);
-    instancia.addProduct(zapatoMascu, categoriaModa, categoriaMasculina);
-    instancia.addProduct(zapatoFeme, categoriaModa, categoriaFemenina);
-    instancia.addProduct(camiNiño, categoriaDepNiño, categoriaDeporte);
-    instancia.addProduct(mayasHombre, categoriaDepMasculino, categoriaDeporte);
-    instancia.addProduct(mayasMujer, categoriaDepFemenio, categoriaDeporte);
+    instancia.addProduct(pantalonUni, [categoriaModa]);
+    instancia.addProduct(pantalonFeme, [categoriaModa, categoriaFemenina]);
+    instancia.addProduct(pantalonMascu, [categoriaModa, categoriaMasculina]);
+    instancia.addProduct(zapatoUni, [categoriaModa]);
+    instancia.addProduct(zapatoMascu, [categoriaModa, categoriaMasculina]);
+    instancia.addProduct(zapatoFeme, [categoriaModa, categoriaFemenina]);
+    instancia.addProduct(camiNiño, [categoriaDepNiño, categoriaDeporte]);
+    instancia.addProduct(mayasHombre, [categoriaDepMasculino, categoriaDeporte]);
+    instancia.addProduct(mayasMujer, [categoriaDepFemenio, categoriaDeporte]);
 
     //TIENDAS.
     var Bershka = new Shop("t1", "Bershka");
