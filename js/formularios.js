@@ -104,6 +104,7 @@ function modifyCategory(category) {
     document.getElementById("errorFormCategorias").innerHTML = "";
     document.getElementById("tituloCategory").innerHTML = "Modificar Categoria";
     document.forms.mCategory.nombrec.value = category.title;
+    document.forms.mCategory.nombrec.disabled=true;
     document.forms.mCategory.descripcionc.value = category.description;
     document.getElementById("modificarCategory").innerHTML = "Modificar Categoria";
     document.getElementById("modificarCategory").onclick = function () {
@@ -113,8 +114,8 @@ function modifyCategory(category) {
 
 function confirmarModificar(category) {
     if (validacionCategorias()) {
-        category.title = document.forms.mCategory.nombrec.value;
         category.description = document.forms.mCategory.descripcionc.value;
+        modifyCategoryDb(category);
         initPopulateCategorias();
         document.getElementById("cerrarModalC").click();
     }
@@ -125,6 +126,7 @@ function AddCategory() {
     //Cargamos los datos de la categoria en el modal.
     document.getElementById("tituloCategory").innerHTML = "Añadir Categoria";
     document.getElementById("errorFormCategorias").innerHTML = "";
+    document.forms.mCategory.nombrec.disabled=false;
     document.forms.mCategory.nombrec.value = "";
     document.forms.mCategory.descripcionc.value = "";
     document.getElementById("modificarCategory").innerHTML = "Añadir Categoria";
@@ -184,6 +186,7 @@ function modifyShop(shop) {
     document.getElementById("tituloShop").innerHTML = "Modificar Tienda";
     document.getElementById("errorFormTiendas").innerHTML = "";
     document.forms.tienda.nif.value = shop.nif;
+    document.forms.tienda.nif.disabled=true;
     document.forms.tienda.nombre.value = shop.name;
     document.forms.tienda.descripcion.value = shop.descripcion;
     document.forms.tienda.telefono.value = shop.telefono;
@@ -198,14 +201,13 @@ function modifyShop(shop) {
 
 function confirmarModificar2(shop) {
     if (validacionTiendas()) {
-        shop.nif = document.forms.tienda.nif.value;
         shop.name = document.forms.tienda.nombre.value;
-
         shop.descripcion = document.forms.tienda.descripcion.value;
         shop.telefono = document.forms.tienda.telefono.value;
         shop.imagen = document.forms.tienda.ruta.value;
         shop.direccion = document.forms.tienda.direccion.value;
 
+        modifyShopDb(shop);
         initPopulateTiendas();
         document.getElementById("cerrarModalT").click();
     }
@@ -216,6 +218,7 @@ function AddShop() {
     //Cargamos los datos de la Tienda en el modal.
     document.getElementById("tituloShop").innerHTML = "Añadir una Tienda";
     document.getElementById("errorFormTiendas").innerHTML = "";
+    document.forms.tienda.nif.disabled = false;
     document.forms.tienda.nif.value = "";
     document.forms.tienda.nombre.value = "";
     document.forms.tienda.descripcion.value = "";
@@ -343,6 +346,7 @@ function addProductDom() {
             var formulario = document.forms.producto;
             var tipo = formulario.tipo.value;
             var nombre = formulario.nombre.value;
+            var id = formulario.idp.value;
             var precio = formulario.precio.value;
             var talla = formulario.talla.value;
             var genero = formulario.genero.value;
@@ -351,11 +355,11 @@ function addProductDom() {
 
             var producto;
             if(tipo=="Camiseta"){
-                producto=new Camiseta(nombre,precio,talla,genero);
+                producto=new Camiseta(id,nombre,precio,talla,genero);
             }else if(tipo=="Pantalon"){
-                producto=new Pants(nombre,precio,talla, genero);
+                producto=new Pants(id, nombre,precio,talla, genero);
             }else if(tipo=="Zapato"){
-                producto=new Shoes(nombre,precio,talla, genero);
+                producto=new Shoes(id,nombre,precio,talla, genero);
             }
             if(ruta!=""){
                 producto.imagen=ruta;
@@ -394,13 +398,17 @@ function validacionProductos() {
     var formulario = document.forms.producto;
     var compro = true;
     var errores = document.getElementById("errorFormProducto");
-
     var nombre = formulario.nombre.value;
+    var id = formulario.idp.value;
     var precio = formulario.precio.value;
     var talla = formulario.talla.value;
     var genero = formulario.genero.value;
     var ruta =formulario.ruta.value;
     var descripcion = formulario.descripcion.value;
+    if (id == "") {
+        errores.innerHTML = "El ID no puede estar vacio  <br>";
+        compro = false;
+    }
     if (nombre == "") {
         errores.innerHTML = "El Nombre no puede estar vacio  <br>";
         compro = false;

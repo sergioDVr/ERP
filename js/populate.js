@@ -11,7 +11,7 @@ function cerrarVentanas() {
 }
 
 //Esta funcion crea en la parte central toda la estructura de tiendas de la página.
-window.onload = initPopulateTiendas();
+//window.onload = initPopulateTiendas();
 
 function initPopulateTiendas() {
     var nommenu = document.getElementById("nomMenu")

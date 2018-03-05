@@ -1,0 +1,109 @@
+[[{
+        "category": {"description":"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque beatae consequatur culpa cum dolores eveniet id illo, magni maiores nemo neque odio officia perferendis provident, unde ut voluptate voluptatem. Facilis!",
+                      "title": "Deporte"},
+        "product": [7, 9, 8]
+    },
+
+        {
+            "category": {"description":"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque beatae consequatur culpa cum dolores eveniet id illo, magni maiores nemo neque odio officia perferendis provident, unde ut voluptate voluptatem. Facilis!",
+              "title": "Deporte Femenino"},
+            "product": [8]
+        },
+        {
+            "category": {"description":"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque beatae consequatur culpa cum dolores eveniet id illo, magni maiores nemo neque odio officia perferendis provident, unde ut voluptate voluptatem. Facilis!",
+              "title": "Deporte Masculino"},
+            "product": [9]
+        },
+        {
+            "category": {"description":"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque beatae consequatur culpa cum dolores eveniet id illo, magni maiores nemo neque odio officia perferendis provident, unde ut voluptate voluptatem. Facilis!",
+              "title": "Deporte Niños"},
+            "product": [7]
+        },
+        {
+            "category": {"description":"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque beatae consequatur culpa cum dolores eveniet id illo, magni maiores nemo neque odio officia perferendis provident, unde ut voluptate voluptatem. Facilis!",
+              "title": "Moda"},
+            "product": [1, 3, 2, 4, 5, 6]
+        },
+        {
+            "category": {"description":"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque beatae consequatur culpa cum dolores eveniet id illo, magni maiores nemo neque odio officia perferendis provident, unde ut voluptate voluptatem. Facilis!",
+              "title": "Moda Masculina"},
+            "product": [3, 6]
+        },
+        {
+            "category": {"description":"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque beatae consequatur culpa cum dolores eveniet id illo, magni maiores nemo neque odio officia perferendis provident, unde ut voluptate voluptatem. Facilis!",
+              "title": "Moda Femenina"},
+            "product": [2, 5]
+        }],
+[ {"description": "Lorem ipsum dolor sit amet, consectetur adipisicin…provident, unde ut voluptate voluptatem. Facilis!", "gender": "Femenino", "imagen": "imagenes/productos/pantalonesUnisex.jpg", "name": "502", "price": 300}
+    ,
+  {"description": "Lorem ipsum dolor sit amet, consectetur adipisicin…provident, unde ut voluptate voluptatem. Facilis!", "gender": "Masculino", "imagen": "imagenes/productos/pantalonesMasculinos.jpg", "name": "501", "price": 400},
+  {"description": "Lorem ipsum dolor sit amet, consectetur adipisicin…provident, unde ut voluptate voluptatem. Facilis!", "gender": "Femenino", "imagen": "imagenes/productos/pantalonesFemeninos.jpg", "name": "500", "price": 500},
+  {"description": "Lorem ipsum dolor sit amet, consectetur adipisicin…provident, unde ut voluptate voluptatem. Facilis!", "gender": "Unisex", "imagen": "imagenes/productos/zapatillasUnisex.jpg", "name": "Mercurial", "price": 80},
+  {"description": "Lorem ipsum dolor sit amet, consectetur adipisicin…provident, unde ut voluptate voluptatem. Facilis!", "gender": "Masculino", "imagen": "imagenes/productos/zapatillasMasculinas.jpg", "name": "Convers", "price": 40},
+  {"description": "Lorem ipsum dolor sit amet, consectetur adipisicin…provident, unde ut voluptate voluptatem. Facilis!", "gender": "Femenino", "imagen": "imagenes/productos/zapatillasFemeninas.jpg", "name": "Shaquille", "price": 20},
+  {"description": "Lorem ipsum dolor sit amet, consectetur adipisicin…provident, unde ut voluptate voluptatem. Facilis!", "gender": "Unisex", "imagen": "imagenes/productos/camisetaDeporteNiño.jpg", "name": "Camiseta Roja Niño", "price": 10},
+  {"description": "Lorem ipsum dolor sit amet, consectetur adipisicin…provident, unde ut voluptate voluptatem. Facilis!", "gender": "Unisex", "imagen": "imagenes/productos/mayasMujer.jpg", "name": "Mallas Mujer", "price": 15},
+  {"description": "Lorem ipsum dolor sit amet, consectetur adipisicin…provident, unde ut voluptate voluptatem. Facilis!", "gender": "Unisex", "imagen": "imagenes/productos/mayasHombre.jpg", "name": "Mallas Hombre", "price": 12}],
+[
+        {
+            "product": [
+                {"product": 2, "stock": 30},
+                {"product": 4, "stock": 20}],
+            "shop": {"descripcion":"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur dolorem doloribus ducimus, expedita fugit impedit ipsa ipsam maiores maxime nam quaerat quod, recusandae saepe, voluptatem voluptatum. Ducimus ipsam tempora unde.",
+                    "direccion":"Calle Moreria, Número 34",
+                    "imagen": "imagenes/tiendas/bershka.jpeg",
+                    "name": "Bershka",
+                    "nif": "t1"}
+
+        },
+        {
+            "product": [
+                {"product": 2, "stock": 500},
+                {"product": 3, "stock": 100},
+                {"product": 4, "stock": 50},
+                {"product": 6, "stock": 60}],
+            "shop": {"descripcion": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur dolorem doloribus ducimus, expedita fugit impedit ipsa ipsam maiores maxime nam quaerat quod, recusandae saepe, voluptatem voluptatum. Ducimus ipsam tempora unde.",
+                    "direccion": "Calle toledo, Número 11",
+                    "imagen": "imagenes/tiendas/pull-bear.jpg",
+                    "name": "Pull and Bear",
+                    "nif": "t2"}
+        },
+        {
+            "product": [
+                {"product": 1, "stock": 17},
+                {"product": 5, "stock": 50}],
+            "shop": {"descripcion": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur dolorem doloribus ducimus, expedita fugit impedit ipsa ipsam maiores maxime nam quaerat quod, recusandae saepe, voluptatem voluptatum. Ducimus ipsam tempora unde.",
+                    "direccion": "Calle Real, Número 112",
+                    "imagen": "imagenes/tiendas/primark.jpg",
+                    "name": "Primark",
+                    "nif": "t3"}
+        },
+        {
+            "product": [],
+            "shop": {"descripcion": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur dolorem doloribus ducimus, expedita fugit impedit ipsa ipsam maiores maxime nam quaerat quod, recusandae saepe, voluptatem voluptatum. Ducimus ipsam tempora unde.",
+            "direccion": "Ronda Calatrava, Número 13",
+            "imagen": "imagenes/tiendas/dutti.jpg",
+            "name": "Massimo Dutti",
+            "nif": "t4"}
+        },
+        {
+            "product": [
+                {"product": 7, "stock": 10},
+                {"product": 8, "stock": 30},
+                {"product": 9, "stock": 50}],
+            "shop": {"descripcion": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur dolorem doloribus ducimus, expedita fugit impedit ipsa ipsam maiores maxime nam quaerat quod, recusandae saepe, voluptatem voluptatum. Ducimus ipsam tempora unde.",
+                        "direccion": "Calle Melchor Cano, Número 26",
+                      "imagen": "imagenes/tiendas/decathlon.jpg",
+                      "name": "Decathlon",
+                      "nif": "t5"}
+        },
+        {
+            "product": [],
+            "shop": {"descripcion": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur dolorem doloribus ducimus, expedita fugit impedit ipsa ipsam maiores maxime nam quaerat quod, recusandae saepe, voluptatem voluptatum. Ducimus ipsam tempora unde.",
+                      "direccion": "Calle Fuen Santa, Número 44",
+                      "imagen": "imagenes/tiendas/zara.jpg",
+                      "name": "Zara",
+                      "nif": "t6"}
+        }
+
+    ]]

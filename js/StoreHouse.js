@@ -122,7 +122,7 @@ var StoreHouse = (function () { //La función anónima devuelve un método getIn
             if (!(this instanceof StoreHouse)) throw new InvalidAccessConstructorException();
 
             //Definimos la propiedad Nombre del almacen.
-            var _nombre = "Nombre no definido.";
+            var _nombre = "Store House";
             //getter y setter para el nombre.
             Object.defineProperty(this, "nombre", {
 
@@ -152,6 +152,16 @@ var StoreHouse = (function () { //La función anónima devuelve un método getIn
                 }
             });
 
+            //Getters y setter del array productos para pasarlo a la base de datos
+            Object.defineProperty(this, "productsDB", {
+                get: function () {
+                    return _productos;
+                },
+                set: function (arra) {
+                    _productos = arra;
+                }
+            });
+
             //Definimos el array categorias, donde se alojaran todas las categorias que tengamos asi como los productos asociados a estas categorias.
             var _categories = [];
             //getter de categorias que devuelve un iterador con todos las categorias.
@@ -169,6 +179,16 @@ var StoreHouse = (function () { //La función anónima devuelve un método getIn
 
             });
 
+            //Getters y setter del array categorias para pasarlo a la base de datos
+            Object.defineProperty(this, "categoriasDB", {
+                get: function () {
+                    return _categories;
+                },
+                set: function (arra) {
+                    _categories = arra;
+                }
+            });
+
             //Definimos el array de tiendas, donde se alojaran todas las tiendas que tengamos asi como sus productos.
             var _shops = [];
             //getter de tiendas que devuelve un iterador con todos las tiendas.
@@ -184,12 +204,21 @@ var StoreHouse = (function () { //La función anónima devuelve un método getIn
                     }
                 }
             });
+            //Getters y setter del array categorias para pasarlo a la base de datos
+            Object.defineProperty(this, "tiendasDB", {
+                get: function () {
+                    return _shops;
+                },
+                set: function (arra) {
+                    _shops = arra;
+                }
+            });
 
             //-----------------Metodos Categorias---------------------
 
             //Funcion que nos da la posicion de una categoria, tambien es quien nos lanza la excepcion si esta no existe.
             function positionCategory(category) {
-                if (!(category instanceof Category) || (category == null)) throw new CategoryStoreHouseException();
+                //if (!(category instanceof Category) || (category == null)) throw new CategoryStoreHouseException();
                 return _categories.findIndex(function (objeto) {
                     return objeto.category.title == category.title;
                 });
@@ -205,6 +234,7 @@ var StoreHouse = (function () { //La función anónima devuelve un método getIn
                             product: []
                         }
                     );
+                    addCategoryDb(_categories[_categories.length-1]);
                     return _categories.length;
                 } else {
                     throw new CategoryExistStoreHouseException();
@@ -223,11 +253,13 @@ var StoreHouse = (function () { //La función anónima devuelve un método getIn
 
             //Elimina una categoría
             this.removeCategory = function (category) {
+                console.log(category);
                 if (!(category instanceof Category) || (category == null)) throw new CategoryStoreHouseException();
                 var position = positionCategory(category);
                 if (position != -1) {
                     if (category.title !== _defaultCategory.title) {
                         _categories.splice(position, 1);
+                        removeCategoryDB(category.title);
                         return _categories.length;
                     } else {
                         throw new DefaultCategoryStoreHouseException();
@@ -317,6 +349,7 @@ var StoreHouse = (function () { //La función anónima devuelve un método getIn
                 if (positionProduct(arguments[0]) == -1) {
                     //Si no existe el producto lo añadimos al array y lo añadimos a la tienda por defecto.
                     _productos.push(arguments[0]);
+                    addProductDb(arguments[0]);
                     this.addProductInShop(arguments[0], _defaultShop, 0);
                     //y añadimos el producto a cada una de las categorias que tengamos si la categoria no existe la añadimos junto con el producto
                     var numCategorys = arguments[1].length;
@@ -329,8 +362,10 @@ var StoreHouse = (function () { //La función anónima devuelve un método getIn
                                 category: arguments[1][i],
                                 product: [arguments[0].serialNumber]
                             });
+                            addCategoryDb(_categories[_categories.length-1]);
                         } else {
                             _categories[position].product.push(arguments[0].serialNumber);
+                            addProductInCategoryDb(_categories[position].category.title,_categories[position].product);
                         }
                     }
                     return _productos.length;
@@ -348,6 +383,7 @@ var StoreHouse = (function () { //La función anónima devuelve un método getIn
                     throw ProductNotExistStoreHouseException();
                 } else {
                     _productos.splice(posicionProducto, 1);
+                    removeProductDB(product.serialNumber);
                     var serial = product.serialNumber;
                     var numeroCategorias = _categories.length;
                     for (var i = 0; i < numeroCategorias; i++) {
@@ -355,6 +391,7 @@ var StoreHouse = (function () { //La función anónima devuelve un método getIn
                             return producto === serial;
                         });
                         if (posicionProducto2 != -1) _categories[i].product.splice(posicionProducto2, 1);
+                        addProductInCategoryDb(_categories[i].category.title,_categories[i].product);
                     }
                     var numeroTiendas = _shops.length;
                     for (var i = 0; i < numeroTiendas; i++) {
@@ -362,6 +399,7 @@ var StoreHouse = (function () { //La función anónima devuelve un método getIn
                             return producto.product === serial;
                         });
                         if (posicionProducto2 != -1) _shops[i].product.splice(posicionProducto2, 1);
+                        addProductInShopDB( _shops[i].shop.nif, _shops[i].product);
                     }
 
                     return _productos.length;
@@ -405,6 +443,7 @@ var StoreHouse = (function () { //La función anónima devuelve un método getIn
                         shop: shop,
                         product: []
                     });
+                    addShopDb(_shops[_shops.length-1]);
                     return _shops.length
                 } else {
                     throw new ShopExistInShopStoreHouseException();
@@ -417,6 +456,7 @@ var StoreHouse = (function () { //La función anónima devuelve un método getIn
                 var position = positionShop(shop);
                 if (position != -1) {
                     _shops.splice(position, 1);
+                    removeShopDB(shop.nif);
                     return _shops.length
                 } else {
                     throw new ShopNotExistStoreHouseException();
@@ -445,6 +485,7 @@ var StoreHouse = (function () { //La función anónima devuelve un método getIn
                     } else {
                         if (positionProductInShop(product, position) == -1) {
                             _shops[position].product.push({product: product.serialNumber, stock: number});
+                            addProductInShopDB(_shops[position].shop.nif,_shops[position].product);
                             return _shops[position].product.length;
                         } else {
                             throw new ProductExistInShopStoreHouseException();
@@ -470,6 +511,7 @@ var StoreHouse = (function () { //La función anónima devuelve un método getIn
                             throw new ProductNotExistInShopStoreHouseException();
                         } else {
                             _shops[posicionTienda].product[posicionProducto].stock += number;
+                            addQuantityProductInShopDB(_shops[posicionTienda].nif,_shops[posicionTienda].product[posicionProducto].stock, posicionProducto);
                             return _shops[posicionTienda].product[posicionProducto].stock;
                         }
 
@@ -570,7 +612,7 @@ var StoreHouse = (function () { //La función anónima devuelve un método getIn
             //Método para devolver todos los productos de una tiendas filtrados por categoria.
             this.getCategorysProductsShop = function (shop, category) {
                 if (!shop instanceof Shop || shop == null) throw new ShopStoreHouseException();
-                if (!(category instanceof Category) || (category == null)) throw new CategoryStoreHouseException();
+               //sif (!(category instanceof Category) || (category == null)) throw new CategoryStoreHouseException();
                 var posicionTienda = positionShop(shop);
 
                 if (posicionTienda == -1) {
@@ -632,7 +674,7 @@ var StoreHouse = (function () { //La función anónima devuelve un método getIn
             //Tienda por defecto.
             var _defaultShop = new Shop("00A", "Shop default");
             //La añadimos a nustra storeHouse.
-            this.addShop(_defaultShop);
+            //this.addShop(_defaultShop);
             Object.defineProperty(this, "defaultShop", {
                 get: function () {
                     return _defaultShop

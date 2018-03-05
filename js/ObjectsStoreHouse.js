@@ -9,10 +9,7 @@ PersonException.prototype = new BaseException(); //Heredamos de BaseException.
 //We define the Product Object.
 var Product = (function() {
 
-    //Initialize a variable that will give a different serial number to each product
-    var serie = 0;
-
-    function Product(name, price) {
+    function Product(serial, name, price, description, image) {
 
     //If the product is not invoked with the new operator, throw a error.
     if (!(this instanceof Product)) throw new InvalidAccessConstructorException();
@@ -25,7 +22,7 @@ var Product = (function() {
     if (price === "undefined" || price === "") throw new EmptyValueException("price");
 
     //We define the serialNumber variable.
-    var _serialNumber = serie++;
+    var _serialNumber = serial;
     //We define the getter for the _serialNumber property, this property does not have the setter method.
     Object.defineProperty(this, "serialNumber", {
         get: function () {
@@ -60,7 +57,7 @@ var Product = (function() {
     });
 
     //We define the Description property.
-    var _description;
+    var _description = description;
     //We define the getter and setter for the _description property;
     Object.defineProperty(this, "description", {
         get: function () {
@@ -72,49 +69,7 @@ var Product = (function() {
             _description = description;
         }
     });
-
-    //We define the Price property.
-    var _tax;
-    //We define the getter and setter for the _tax property;
-    Object.defineProperty(this, "tax", {
-        get: function () {
-            if (_tax === "undefined") throw UninitializedPropertyException("tax");
-            return _tax;
-        },
-        set: function (tax) {
-            if (tax === "undefined" || tax === "") throw new EmptyValueException("tax");
-            _tax = tax;
-        }
-    });
-
-    //We define the Images property.
-    var _images;
-    //We define the getter, addImage and removeImage for the _images property;
-    Object.defineProperty(this, "images", {
-        get: function () {
-            if (_images === "undefined") throw UninitializedPropertyException("images");
-            var nextIndex = 0;
-            return {
-                next: function () {
-                    return nextIndex < _images.length ? {value: _images[nextIndex++], done: false} : {done: true};
-                }
-            };
-        }
-    });
-
-    this.addImage = function (image) {
-        if (!(image instanceof Image)) throw new InvalidValueException("Image", "imagen");
-        if (_images == undefined) _images = [];
-        _images.add(image);
-    }
-
-    this.removeImage = function (name) {
-        if (_images === "undefined") throw UninitializedPropertyException("images");
-        for (var i = 0; i < _images.length; i++) {
-            if (_images[i].name === name) _images.splice(i, 1);
-        }
-    }
-    var _imagen;
+    var _imagen = image;
         //Setter y getter de imagen
         Object.defineProperty(this, 'imagen', {
             get:function(){
@@ -134,7 +89,7 @@ Product.prototype.toString = function (){
     return this.constructor.name + ": " + this.name;
 }
 //We define the Ropa Object.
-function Clothes(name, price, gender) {
+function Clothes(serial, name, price,description, image, gender) {
 
     //If the Clothes is not invoked with the new operator, throw a error.
     if(!(this instanceof Clothes)) throw new InvalidAccessConstructorException();
@@ -143,7 +98,7 @@ function Clothes(name, price, gender) {
     if(this.constructor===Clothes)throw new AbstractClassException("Clothes");
 
     //We call the super-constructor method.
-    Product.call(this, name, price);
+    Product.call(this,serial, name, price,description, image);
 
     //We check that obligatory variables are not empty and meet the requirements.
     if(gender==="undefined"||gender==="")throw new EmptyValueException("Gender");
@@ -160,14 +115,24 @@ function Clothes(name, price, gender) {
 }
 Clothes.prototype = Object.create(Product.prototype);
 Clothes.prototype.constructor=Clothes;
+Clothes.prototype.getObject = function(){
+    return {
+        description: this.description,
+        gender: this.gender,
+        imagen: this.imagen,
+        name: this.name,
+        price: this.price,
+        serialNumber: this.serialNumber
+    };
+}
 //We define the Pants Object.
-function Pants(name, price, size, gender) {
+function Pants(serial,name, price,description, image, size, gender) {
 
     //If the Pants is not invoked with the new operator, throw a error.
     if(!(this instanceof Pants)) throw new InvalidAccessConstructorException();
 
     //We call the super-constructor method.
-    Clothes.call(this,name, price, gender);
+    Clothes.call(this,serial,name, price,description, image, gender);
 
     //We check that obligatory variables are not empty and meet the requirements.
     if(size==="undefined"||size==="")throw new EmptyValueException("SerialNumber");
@@ -189,13 +154,13 @@ Pants.prototype = Object.create(Clothes.prototype);
 Pants.prototype.constructor=Pants;
 
 //We define the shoes Object.
-function Shoes(name, price, size, gender) {
+function Shoes(serial,name, price,description, image,size, gender) {
 
     //If the Pants is not invoked with the new operator, throw a error.
     if(!(this instanceof Shoes)) throw new InvalidAccessConstructorException();
 
     //We call the super-constructor method.
-    Clothes.call(this,name, price, gender);
+    Clothes.call(this,serial,name, price,description, image, gender);
 
     //We check that obligatory variables are not empty and meet the requirements.
     if(size==="undefined"||size==="")throw new EmptyValueException("SerialNumber");
@@ -216,13 +181,13 @@ function Shoes(name, price, size, gender) {
 Shoes.prototype = Object.create(Clothes.prototype);
 Shoes.prototype.constructor=Shoes;
 //We define the camiseta Object.
-function Camiseta(name, price, size, gender) {
+function Camiseta(serie,name, price,description, image, size, gender) {
 
     //If the Pants is not invoked with the new operator, throw a error.
     if(!(this instanceof Camiseta)) throw new InvalidAccessConstructorException();
 
     //We call the super-constructor method.
-    Clothes.call(this,name, price, "Unisex");
+    Clothes.call(this,serie,name, price,description, image, "Unisex");
 
     //We check that obligatory variables are not empty and meet the requirements.
     if(size==="undefined"||size==="")throw new EmptyValueException("SerialNumber");
@@ -279,6 +244,12 @@ Category.prototype = {};
 Category.prototype.constructor = Category;
 Category.prototype.toString = function (){
     return "Category: " + this.title + " (" + this.description + ")";
+}
+Category.prototype.getObject = function(){
+    return {
+        title: this.title,
+        description: this.description
+    };
 }
 //Objeto tienda:
 function Shop(nif, name) {
@@ -338,7 +309,8 @@ function Shop(nif, name) {
             return _telefono;
         },
         set:function(telefono){
-            telefono = telefono.trim();
+            console.log(typeof telefono);
+            //telefono = telefono.trim();
             if (telefono === 'undefined') throw new EmptyValueException("telefono");
             _telefono = telefono;
         }
@@ -374,6 +346,7 @@ function Shop(nif, name) {
             return _imagen;
         },
         set:function(imagen){
+
             imagen = imagen.trim();
             if (imagen === 'undefined') throw new EmptyValueException("imagen");
             _imagen = imagen;
@@ -386,6 +359,17 @@ Shop.prototype.constructor = Shop;
 Shop.prototype.toString = function (){
     return "Shop: " + this.nif + " (" + this.name+ ")";
 }
+Shop.prototype.getObject = function(){
+    return {
+        nif: this.nif,
+        coordenadas: this.coordenadas,
+        descripcion: this.descripcion,
+        direccion: this.direccion,
+        imagen: this.imagen,
+        name: this.name
+    };
+}
+
 
 // Objeto Coords para definir coordenadas.
 function Coords(latitude = 0, longitude = 0){

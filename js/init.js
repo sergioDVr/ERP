@@ -5,21 +5,22 @@ function init() {
     var instancia = StoreHouse.getInstance();
     //Le ponemos un nombre.
     instancia.nombre = "Store House";
+    instancia.addShop(instancia.defaultShop);
 
     //PRODUCTOS
     //pantalones
-    var pantalonUni = new Pants("502", 300, 42, "Unisex");
-    var pantalonMascu = new Pants("501", 400, 48, "Masculino");
-    var pantalonFeme = new Pants("500", 500, 32, "Femenino");
+    var pantalonUni = new Pants(1,"502", 300, 42, "Unisex");
+    var pantalonMascu = new Pants(2,"501", 400, 48, "Masculino");
+    var pantalonFeme = new Pants(3,"500", 500, 32, "Femenino");
     //zapatos
-    var zapatoUni = new Shoes("Mercurial", 80, 38, "Unisex");
-    var zapatoMascu = new Shoes("Convers", 40, 45, "Masculino");
-    var zapatoFeme = new Shoes("Shaquille", 20, 40, "Femenino");
+    var zapatoUni = new Shoes(4,"Mercurial", 80, 38, "Unisex");
+    var zapatoMascu = new Shoes(5,"Convers", 40, 45, "Masculino");
+    var zapatoFeme = new Shoes(6,"Shaquille", 20, 40, "Femenino");
     //camisetas
-    var camiNiño = new Camiseta("Camiseta Roja Niño", 10, 20);
+    var camiNiño = new Camiseta(7,"Camiseta Roja Niño", 10, 20);
     //mayas
-    var mayasMujer = new Pants("Mallas Mujer", 15, 36, "Femenino");
-    var mayasHombre = new Pants("Mallas Hombre", 12, 38,"Masculino")
+    var mayasMujer = new Pants(8,"Mallas Mujer", 15, 36, "Femenino");
+    var mayasHombre = new Pants(9,"Mallas Hombre", 12, 38,"Masculino")
     //Les añadimos las fotos
     pantalonUni.imagen ="imagenes/productos/pantalonesUnisex.jpg";
     pantalonMascu.imagen ="imagenes/productos/pantalonesMasculinos.jpg";
@@ -127,5 +128,3 @@ function init() {
     window.instancia =instancia;
 
 }
-//Esta funcion se ejecuta cuando es cargada la página.
-window.onload=init();
