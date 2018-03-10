@@ -332,6 +332,19 @@ var StoreHouse = (function () { //La función anónima devuelve un método getIn
 
             //---------------Metodos Productos---------------------
 
+            //Metodo para devoler un producto según su ID.
+            this.getProductId = function (id) {
+
+                var cont =0;
+
+                while (cont < _productos.length) {
+                    if (_productos[cont].serialNumber== id) {
+                        return _productos[cont];
+                    }
+                    cont++;
+                }
+            }
+
             //Funcion que nos da la posicion de un producto, tambien es quien nos lanza la excepcion si esta no existe.
             function positionProduct(product) {
                 return _productos.findIndex(function (Producto) {

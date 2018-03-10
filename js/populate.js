@@ -482,6 +482,14 @@ function globalProductPopulate() {
     icono.className = "glyphicon glyphicon-plus";
     btneana.appendChild(icono);
 
+    //Creamos el icono para borrar productos
+    var imagen = document.createElement("img");
+    imagen.setAttribute("src", "imagenes/papelera.png");
+    div.appendChild(imagen);
+    imagen.className="iconoBorrar";
+    imagen.setAttribute("ondrop","drop(event)");
+    imagen.setAttribute("ondragover","allowDrop(event)");
+    imagen.setAttribute("id","div1");
     //Le añadimos el evento click para que cargue todas las categorias y tiendas
 
     btneana.addEventListener("click", addProductDom);
@@ -493,7 +501,12 @@ function globalProductPopulate() {
     var cont=0;
     var row;
     for (var i = 0; i < productosGlobales.length; i++) {
+
         var contenedorSeparacion = document.createElement("div");
+        contenedorSeparacion.setAttribute("id", productosGlobales[i].product.serialNumber);
+        contenedorSeparacion.setAttribute("draggable", "true");
+        contenedorSeparacion.setAttribute("ondragstart", "drag(event)");
+
         var contenedorProducto = document.createElement("table");
         contenedorProducto.className = "table";
         contenedorSeparacion.className = "col-md-4 globalProducto";
@@ -517,16 +530,8 @@ function globalProductPopulate() {
         var td2 = document.createElement("td");
         td2.innerHTML = productosGlobales[i].product.name;
         tr1.appendChild(td2);
+        td2.setAttribute("colspan", "2");
         contenedorProducto.appendChild(tr1);
-
-        //Boton para eleminar un producto.
-        var tdb = document.createElement("td");
-        var botonElimi = document.createElement("button")
-        botonElimi.innerHTML="Eliminar";
-        botonElimi.className="btn btn-danger validar";
-        tdb.appendChild(botonElimi);
-        tr1.appendChild(tdb);
-        botonElimi.addEventListener("click", getFunctionremoveProduct(productosGlobales[i].product));
 
         //Metemos en la tabla la seccion tienda
         var tr2 = document.createElement("tr");

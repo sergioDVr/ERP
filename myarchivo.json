@@ -1,0 +1,251 @@
+[
+  [
+    {
+      "product": [
+        7,
+        9,
+        8
+      ],
+      "category": {
+        "title": "Deporte",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque beatae consequatur culpa cum dolores eveniet id illo, magni maiores nemo neque odio officia perferendis provident, unde ut voluptate voluptatem. Facilis!"
+      }
+    },
+    {
+      "product": [
+        8
+      ],
+      "category": {
+        "title": "Deporte Femenino",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque beatae consequatur culpa cum dolores eveniet id illo, magni maiores nemo neque odio officia perferendis provident, unde ut voluptate voluptatem. Facilis!"
+      }
+    },
+    {
+      "product": [
+        9
+      ],
+      "category": {
+        "title": "Deporte Masculino",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque beatae consequatur culpa cum dolores eveniet id illo, magni maiores nemo neque odio officia perferendis provident, unde ut voluptate voluptatem. Facilis!"
+      }
+    },
+    {
+      "product": [
+        7
+      ],
+      "category": {
+        "title": "Deporte Niños",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque beatae consequatur culpa cum dolores eveniet id illo, magni maiores nemo neque odio officia perferendis provident, unde ut voluptate voluptatem. Facilis!"
+      }
+    },
+    {
+      "product": [
+        1,
+        3,
+        2,
+        4,
+        5,
+        6
+      ],
+      "category": {
+        "title": "Moda",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque beatae consequatur culpa cum dolores eveniet id illo, magni maiores nemo neque odio officia perferendis provident, unde ut voluptate voluptatem. Facilis!"
+      }
+    },
+    {
+      "product": [
+        2,
+        5
+      ],
+      "category": {
+        "title": "Moda Femenina",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque beatae consequatur culpa cum dolores eveniet id illo, magni maiores nemo neque odio officia perferendis provident, unde ut voluptate voluptatem. Facilis!"
+      }
+    },
+    {
+      "product": [
+        3,
+        6
+      ],
+      "category": {
+        "title": "Moda Masculina",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque beatae consequatur culpa cum dolores eveniet id illo, magni maiores nemo neque odio officia perferendis provident, unde ut voluptate voluptatem. Facilis!"
+      }
+    }
+  ],
+  [
+    {
+      "gender": "Unisex",
+      "imagen": "imagenes/productos/pantalonesUnisex.jpg",
+      "name": "502",
+      "price": 300,
+      "serialNumber": 1
+    },
+    {
+      "gender": "Unisex",
+      "imagen": "imagenes/productos/pantalonesMasculinos.jpg",
+      "name": "501",
+      "price": 400,
+      "serialNumber": 2
+    },
+    {
+      "gender": "Unisex",
+      "imagen": "imagenes/productos/pantalonesFemeninos.jpg",
+      "name": "500",
+      "price": 500,
+      "serialNumber": 3
+    },
+    {
+      "gender": "Unisex",
+      "imagen": "imagenes/productos/zapatillasUnisex.jpg",
+      "name": "Mercurial",
+      "price": 80,
+      "serialNumber": 4
+    },
+    {
+      "gender": "Unisex",
+      "imagen": "imagenes/productos/zapatillasMasculinas.jpg",
+      "name": "Convers",
+      "price": 40,
+      "serialNumber": 5
+    },
+    {
+      "gender": "Unisex",
+      "imagen": "imagenes/productos/zapatillasFemeninas.jpg",
+      "name": "Shaquille",
+      "price": 20,
+      "serialNumber": 6
+    },
+    {
+      "gender": "Unisex",
+      "imagen": "imagenes/productos/camisetaDeporteNiño.jpg",
+      "name": "Camiseta Roja Niño",
+      "price": 10,
+      "serialNumber": 7
+    },
+    {
+      "gender": "Unisex",
+      "imagen": "imagenes/productos/mayasMujer.jpg",
+      "name": "Mallas Mujer",
+      "price": 15,
+      "serialNumber": 8
+    },
+    {
+      "gender": "Unisex",
+      "imagen": "imagenes/productos/mayasHombre.jpg",
+      "name": "Mallas Hombre",
+      "price": 12,
+      "serialNumber": 9
+    }
+  ],
+  [
+    {
+      "product": [
+        {
+          "product": 2,
+          "stock": 30
+        },
+        {
+          "product": 4,
+          "stock": 20
+        }
+      ],
+      "category": {
+        "nif": "t1",
+        "descripcion": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur dolorem doloribus ducimus, expedita fugit impedit ipsa ipsam maiores maxime nam quaerat quod, recusandae saepe, voluptatem voluptatum. Ducimus ipsam tempora unde.",
+        "direccion": "Calle Moreria, Número 34",
+        "imagen": "imagenes/tiendas/bershka.jpeg",
+        "name": "Bershka"
+      }
+    },
+    {
+      "product": [
+        {
+          "product": 2,
+          "stock": 500
+        },
+        {
+          "product": 3,
+          "stock": 100
+        },
+        {
+          "product": 4,
+          "stock": 50
+        },
+        {
+          "product": 6,
+          "stock": 60
+        }
+      ],
+      "category": {
+        "nif": "t2",
+        "descripcion": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur dolorem doloribus ducimus, expedita fugit impedit ipsa ipsam maiores maxime nam quaerat quod, recusandae saepe, voluptatem voluptatum. Ducimus ipsam tempora unde.",
+        "direccion": "Calle toledo, Número 11",
+        "imagen": "imagenes/tiendas/pull-bear.jpg",
+        "name": "Pull and Bear"
+      }
+    },
+    {
+      "product": [
+        {
+          "product": 1,
+          "stock": 17
+        },
+        {
+          "product": 5,
+          "stock": 50
+        }
+      ],
+      "category": {
+        "nif": "t3",
+        "descripcion": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur dolorem doloribus ducimus, expedita fugit impedit ipsa ipsam maiores maxime nam quaerat quod, recusandae saepe, voluptatem voluptatum. Ducimus ipsam tempora unde.",
+        "direccion": "Calle Real, Número 112",
+        "imagen": "imagenes/tiendas/primark.jpg",
+        "name": "Primark"
+      }
+    },
+    {
+      "product": [],
+      "category": {
+        "nif": "t4",
+        "descripcion": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur dolorem doloribus ducimus, expedita fugit impedit ipsa ipsam maiores maxime nam quaerat quod, recusandae saepe, voluptatem voluptatum. Ducimus ipsam tempora unde.",
+        "direccion": "Ronda Calatrava, Número 13",
+        "imagen": "imagenes/tiendas/dutti.jpg",
+        "name": "Massimo Dutti"
+      }
+    },
+    {
+      "product": [
+        {
+          "product": 7,
+          "stock": 10
+        },
+        {
+          "product": 8,
+          "stock": 30
+        },
+        {
+          "product": 9,
+          "stock": 50
+        }
+      ],
+      "category": {
+        "nif": "t5",
+        "descripcion": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur dolorem doloribus ducimus, expedita fugit impedit ipsa ipsam maiores maxime nam quaerat quod, recusandae saepe, voluptatem voluptatum. Ducimus ipsam tempora unde.",
+        "direccion": "Calle Melchor Cano, Número 26",
+        "imagen": "imagenes/tiendas/decathlon.jpg",
+        "name": "Decathlon"
+      }
+    },
+    {
+      "product": [],
+      "category": {
+        "nif": "t6",
+        "descripcion": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur dolorem doloribus ducimus, expedita fugit impedit ipsa ipsam maiores maxime nam quaerat quod, recusandae saepe, voluptatem voluptatum. Ducimus ipsam tempora unde.",
+        "direccion": "Calle Fuen Santa, Número 44",
+        "imagen": "imagenes/tiendas/zara.jpg",
+        "name": "Zara"
+      }
+    }
+  ]
+]

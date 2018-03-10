@@ -3,7 +3,7 @@ CACHE MANIFEST
 
 ERP.html
 Producto.html
-js/
-imagenes/
-css/
-fonts/
+js/*
+imagenes/*
+css/*
+fonts/*

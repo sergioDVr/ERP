@@ -334,7 +334,6 @@ function Shop(nif, name) {
             return _coordenadas;
         },
         set:function(coordenadas){
-            coordenadas = coordenadas.trim();
             if (coordenadas === 'undefined') throw new EmptyValueException("coordenadas");
             _coordenadas = coordenadas;
         }
@@ -347,7 +346,9 @@ function Shop(nif, name) {
         },
         set:function(imagen){
 
-            imagen = imagen.trim();
+            if(imagen != undefined){
+                imagen = imagen.trim();
+            }
             if (imagen === 'undefined') throw new EmptyValueException("imagen");
             _imagen = imagen;
         }
@@ -362,7 +363,7 @@ Shop.prototype.toString = function (){
 Shop.prototype.getObject = function(){
     return {
         nif: this.nif,
-        coordenadas: this.coordenadas,
+        coordenadas: this.coordenadas.getObject(),
         descripcion: this.descripcion,
         direccion: this.direccion,
         imagen: this.imagen,
@@ -410,7 +411,12 @@ function Coords(latitude = 0, longitude = 0){
             _longitude = value;
         }
     });
-
+}
+Coords.prototype.getObject = function(){
+    return {
+        latitude: this.latitude,
+        longitude: this.longitude
+    };
 }
 
 
