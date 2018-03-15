@@ -18,14 +18,15 @@ request.onupgradeneeded = function (event) {
     var arrayCategorias = db.createObjectStore(DB_STORE_CATEGORIAS, {keyPath: "category.title"});
     var arrayTiendas = db.createObjectStore(DB_STORE_TIENDAS, {keyPath: "shop.nif"});
     try {
-        //Almacenamiento Productos.
+
         arrayTiendas.transaction.oncomplete = function () {
             var init;
-            var xmlhttp = new XMLHttpRequest();
-            xmlhttp.onreadystatechange = function () {
-                if (this.readyState == 4 && this.status == 200) {
-                    var myObj = JSON.parse(this.responseText);
-                    init = myObj;
+            $.ajax({
+                url: 'initJSON.json',
+                type: 'get',
+                async: false,
+                success:  function (data) {
+                    init = data;
                     var transaction = db.transaction([DB_STORE_PRODUCTOS, DB_STORE_CATEGORIAS, DB_STORE_TIENDAS], "readwrite");
 
                     var _arrayTiendas = transaction.objectStore(DB_STORE_TIENDAS);
@@ -42,9 +43,7 @@ request.onupgradeneeded = function (event) {
                         _arrayProductos.add(init[1][i]);
                     }
                 }
-            };
-            xmlhttp.open("GET", "initJSON.json", false);
-            xmlhttp.send();
+            });
         }
     } catch (e) {
         console.log("Exception creating object store: " + e);
@@ -92,15 +91,16 @@ request.onsuccess = function (event) {
             tienda.telefono = cursor.value.shop.telefono;
             tienda.direccion = cursor.value.shop.direccion;
             tienda.descripcion = cursor.value.shop.descripcion;
-            tienda.coordenadas=new Coords(cursor.value.shop.coordenadas.latitude,cursor.value.shop.coordenadas.longitude);
+            tienda.coordenadas = new Coords(cursor.value.shop.coordenadas.latitude, cursor.value.shop.coordenadas.longitude);
             var aMeter = {
                 product: cursor.value.product,
                 shop: tienda
             }
             instancia.tiendasDB.push(aMeter);
             cursor.continue();
+        }else{
+            initPopulateTiendas();
         }
-        initPopulateTiendas();
     }
     var objectStoreProductos = transaction.objectStore(DB_STORE_PRODUCTOS);
     objectStoreProductos.openCursor().onsuccess = function (event) {

@@ -3,23 +3,21 @@
 function geolocalizar() {
 
     //Mostramos y ocultamos lo que nos interesa de nuestra parte central
-    document.getElementById("tiendas").style.display = "block";
-    document.getElementById("tienda-productos").style.display = "none";
-    document.getElementById("productosGlobales").style.display = "none";
+    $("#tiendas").css("display", "block");
+    $("#tienda-productos").css("display", "none");
+    $("#productosGlobales").css("display", "none");;
 
     //Cogemos todas las tiendas de nuestro ERP.
     var iteraTiendas = window.instancia.getShops;
     //El contenedor principal de la pagina
-    var princi = document.getElementById("princi");
+    var princi = $("#princi");
     //Borramos todos los hijos del contenedor principal en el caso que tenga y del menú.
     borrarHijos(princi);
 
-    var divMapa = document.createElement("div");
+    var divMapa =document.createElement("div");
+    divMapa.setAttribute("id","map");
 
-    divMapa.setAttribute("id", "map");
-
-    princi.appendChild(divMapa);
-
+    princi.append(divMapa);
 
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(showPosition, showError);

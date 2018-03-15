@@ -2,41 +2,36 @@
 
 function comprobacionLogin() {
     if (getCookie("validacion")) {
-        document.getElementById("validacion").style.display = "none";
-        var user = document.getElementById("nombre");
-        var usuario = getCookie("validacion");
-        user.innerHTML = "Hola, " + usuario;
-        document.getElementById("validado").style.display = "block";
-        var arraActivar = document.getElementsByClassName("validar");
-        for (var i = 0; i < arraActivar.length; i++) {
-            arraActivar[i].style.display = "inline-block";
-        }
+        $("#validacion").css("display","none");
+        $("#nombre").text("Hola, " + getCookie("validacion"));
+        $("#validado").css("display","block");
+
+        $(".validar").css("display", "inline-block");
+
     } else {
-        document.getElementById("validacion").style.display = "block";
-        document.getElementById("validado").style.display = "none";
-        var arraActivar = document.getElementsByClassName("validar");
-        for (var i = 0; i < arraActivar.length; i++) {
-            arraActivar[i].style.display = "none";
-        }
+        $("#validacion").css("display","block");
+        $("#validado").css("display","none");
+        $(".validar").css("display", "none");
     }
 }
 
 function validacion() {
-    var usuario = document.forms["validar"]["usuario"].value;
-    var contra = document.forms["validar"]["contra"].value;
-    var error = document.getElementById("errores");
+
+    var usuario = document.forms.validar.usuario.value;
+    var contra = document.forms.validar.contra.value;
+    var error = $("#errores");
 
     if (usuario != "prueba") {
-        error.innerHTML = "Usuario incorrecto";
+        error.text("Usuario incorrecto");
     } else if (contra != "prueba") {
-        error.innerHTML = "Contraseña incorrecta";
+        error.text("Contraseña incorrecta");
     } else {
+
         setCookie("validacion", usuario, 1);
-        document.getElementById("validacion").style.display = "none";
-        var user = document.getElementById("nombre");
+        $("#validacion").css("display","none");
         var usuario = usuario;
-        user.innerHTML = "Hola, " + usuario;
-        document.getElementById("validado").style.display = "block";
+        $("#nombre").text("Hola, " + usuario);
+        $("#validado").css("display", "block");
         comprobacionLogin();
     }
 
@@ -101,15 +96,18 @@ function getFunctionModigyCategory(category) {
 
 function modifyCategory(category) {
     //Cargamos los datos de la categoria en el modal.
-    document.getElementById("errorFormCategorias").innerHTML = "";
-    document.getElementById("tituloCategory").innerHTML = "Modificar Categoria";
-    document.forms.mCategory.nombrec.value = category.title;
-    document.forms.mCategory.nombrec.disabled = true;
-    document.forms.mCategory.descripcionc.value = category.description;
-    document.getElementById("modificarCategory").innerHTML = "Modificar Categoria";
-    document.getElementById("modificarCategory").onclick = function () {
+    $("#errorFormCategorias").text("");
+    $("tituloCategory").text("Modificar Categoria");
+
+    var formulario =document.forms.mCategory;
+
+    formulario.nombrec.value = category.title;
+    formulario.nombrec.disabled = true;
+    formulario.descripcionc.value = category.description;
+
+    $("#modificarCategory").text("Modificar Categoria").click (function () {
         return confirmarModificar(category)
-    };
+    });
 }
 
 function confirmarModificar(category) {
@@ -117,20 +115,22 @@ function confirmarModificar(category) {
         category.description = document.forms.mCategory.descripcionc.value;
         modifyCategoryDb(category);
         initPopulateCategorias();
-        document.getElementById("cerrarModalC").click();
+        $("#cerrarModalC").click();
     }
 }
 
 //Añadir una categoria
 function AddCategory() {
     //Cargamos los datos de la categoria en el modal.
-    document.getElementById("tituloCategory").innerHTML = "Añadir Categoria";
-    document.getElementById("errorFormCategorias").innerHTML = "";
+    $("#tituloCategory").text("Añadir Categoria");
+    $("#errorFormCategorias").text("");
+
     document.forms.mCategory.nombrec.disabled = false;
     document.forms.mCategory.nombrec.value = "";
     document.forms.mCategory.descripcionc.value = "";
-    document.getElementById("modificarCategory").innerHTML = "Añadir Categoria";
-    document.getElementById("modificarCategory").onclick = function () {
+
+    $("#modificarCategory").text("Añadir Categoria");
+    $("#modificarCategory").click(function () {
 
         if (validacionCategorias()) {
             var category = new Category(document.forms.mCategory.nombrec.value);
@@ -139,9 +139,9 @@ function AddCategory() {
             }
             instancia.addCategory(category);
             initPopulateCategorias();
-            document.getElementById("cerrarModalC").click();
+            $("#cerrarModalC").click();
         }
-    };
+    });
 }
 
 function validacionCategorias() {
@@ -214,8 +214,8 @@ function modifyShop(shop) {
     }
 
     //Cargamos los datos de la tienda en el modal.
-    document.getElementById("tituloShop").innerHTML = "Modificar Tienda";
-    document.getElementById("errorFormTiendas").innerHTML = "";
+    $("#tituloShop").text("Modificar Tienda");
+    $("#errorFormTiendas").text("");
     document.forms.tienda.nif.value = shop.nif;
     document.forms.tienda.nif.disabled = true;
     document.forms.tienda.nombre.value = shop.name;
@@ -223,11 +223,11 @@ function modifyShop(shop) {
     document.forms.tienda.telefono.value = shop.telefono;
     document.forms.tienda.ruta.value = shop.imagen;
     document.forms.tienda.direccion.value = shop.direccion;
-    document.getElementById("botonTiendas").innerHTML = "Modificar";
-    document.getElementById("botonTiendas").onclick = function () {
+    $("#botonTiendas").text("Modificar");
+    $("#botonTiendas").click(function () {
 
         return confirmarModificar2(shop)
-    };
+    });
 }
 
 function confirmarModificar2(shop) {
@@ -245,7 +245,7 @@ function confirmarModificar2(shop) {
 
         modifyShopDb(shop);
         initPopulateTiendas();
-        document.getElementById("cerrarModalT").click();
+        $("#cerrarModalT").click();
     }
 }
 
@@ -302,8 +302,8 @@ function AddShop() {
     }
 
     //Cargamos los datos de la Tienda en el modal.
-    document.getElementById("tituloShop").innerHTML = "Añadir una Tienda";
-    document.getElementById("errorFormTiendas").innerHTML = "";
+    $("#tituloShop").text("Añadir una Tienda");
+    $("#errorFormTiendas").text("");
     document.forms.tienda.nif.disabled = false;
     document.forms.tienda.nif.value = "";
     document.forms.tienda.nombre.value = "";
@@ -311,8 +311,7 @@ function AddShop() {
     document.forms.tienda.telefono.value = "";
     document.forms.tienda.ruta.value = "";
     document.forms.tienda.direccion.value = "";
-    document.getElementById("botonTiendas").innerHTML = "Añadir Tienda";
-    document.getElementById("botonTiendas").onclick = function () {
+    $("#botonTiendas").text("Añadir Tienda").click(function () {
 
         if (validacionTiendas()) {
             var tienda = new Shop(document.forms.tienda.nif.value, document.forms.tienda.nombre.value);
@@ -322,12 +321,14 @@ function AddShop() {
             tienda.direccion = document.forms.tienda.direccion.value;
             if(document.forms.tienda.lat.value!=""){
                 tienda.coordenadas=new Coords(document.forms.tienda.lat.value,document.forms.tienda.long.value);
+            }else{
+                tienda.coordenadas=new Coords(30,30);
             }
             instancia.addShop(tienda);
             initPopulateTiendas();
             document.getElementById("cerrarModalT").click();
         }
-    };
+    });
 }
 
 function validacionTiendas() {
@@ -365,8 +366,8 @@ function addProductDom() {
     formulario.genero.value = "";
     formulario.ruta.value = "";
     formulario.descripcion.value = "";
-    borrarHijos(document.getElementById("tiendasparainsertarproducto"));
-    borrarHijos(document.getElementById("categoriasparainsertarproductos"));
+    borrarHijos($("#tiendasparainsertarproducto"));
+    borrarHijos($("#categoriasparainsertarproductos"));
     //Cojemos el div donde cargaremos las tiendas y el div donde cargaremos las categiras.
     var tiendas = document.getElementById("tiendasparainsertarproducto");
     var categorias = document.getElementById("categoriasparainsertarproductos");
@@ -475,7 +476,7 @@ function addProductDom() {
                 }
             }
             globalProductPopulate();
-            document.getElementById("cerrarProductos").click();
+            $("#cerrarProductos").click();
         }
 
     }
@@ -535,7 +536,6 @@ function validacionProductos() {
     for (var i = 0; i < tiendasSeleccionadas.length; i++) {
         if (tiendasSeleccionadas[i].checked) {
             var cantidad = tiendasCantidad[i].value;
-            console.log(cantidad);
             if (cantidad < 0 || cantidad == "") {
                 errores.innerHTML += "La Cantidad de stock para no puede ser negativa ni puede estar vacia.<br>";
                 compro = false;
@@ -576,13 +576,13 @@ function modifyStock(producto, tiendaystock) {
     formulario.producto.value = producto.name;
     formulario.nombre.value = tiendaystock.shop.name;
     formulario.stockActual.value = tiendaystock.stock;
-    document.getElementById("errorFormStock").innerHTML = "";
+    $("#errorFormStock").text("");
     document.forms.anaStock.stockaAna.value = "";
 
     var stock = parseInt(document.forms.anaStock.stockaAna.value);
-    document.getElementById("botonStock").onclick = function () {
+    $("#botonStock").click(function () {
         return confirmarModificarstock(producto, tiendaystock.shop, stock)
-    };
+    });
 }
 
 function confirmarModificarstock(producto, tienda, stock) {
@@ -590,7 +590,7 @@ function confirmarModificarstock(producto, tienda, stock) {
         var stock = parseInt(document.forms.anaStock.stockaAna.value);
         instancia.addQuantityProductInShop(producto, tienda, stock);
         globalProductPopulate();
-        document.getElementById("cerrarModalS").click();
+        $("#cerrarModalS").click();
     }
 }
 
@@ -599,7 +599,7 @@ function validacionStock() {
     var stock = parseInt(document.forms.anaStock.stockaAna.value);
 
     if (stock < 0) {
-        document.getElementById("errorFormStock").innerHTML = "El Stock no puede ser negativo";
+        $("#errorFormStock").text("El Stock no puede ser negativo");
         compro = false;
     }
 

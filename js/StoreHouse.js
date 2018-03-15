@@ -234,7 +234,7 @@ var StoreHouse = (function () { //La función anónima devuelve un método getIn
                             product: []
                         }
                     );
-                    addCategoryDb(_categories[_categories.length-1]);
+                    addCategoryDb(category);
                     return _categories.length;
                 } else {
                     throw new CategoryExistStoreHouseException();
@@ -363,7 +363,7 @@ var StoreHouse = (function () { //La función anónima devuelve un método getIn
                     //Si no existe el producto lo añadimos al array y lo añadimos a la tienda por defecto.
                     _productos.push(arguments[0]);
                     addProductDb(arguments[0]);
-                    this.addProductInShop(arguments[0], _defaultShop, 0);
+                   // this.addProductInShop(arguments[0], _defaultShop, 0);
                     //y añadimos el producto a cada una de las categorias que tengamos si la categoria no existe la añadimos junto con el producto
                     var numCategorys = arguments[1].length;
                     for (var i = 0; i < numCategorys; i++) {
@@ -524,7 +524,7 @@ var StoreHouse = (function () { //La función anónima devuelve un método getIn
                             throw new ProductNotExistInShopStoreHouseException();
                         } else {
                             _shops[posicionTienda].product[posicionProducto].stock += number;
-                            addQuantityProductInShopDB(_shops[posicionTienda].nif,_shops[posicionTienda].product[posicionProducto].stock, posicionProducto);
+                            addQuantityProductInShopDB(_shops[posicionTienda].shop.nif,_shops[posicionTienda].product[posicionProducto].stock, posicionProducto);
                             return _shops[posicionTienda].product[posicionProducto].stock;
                         }
 

@@ -18,13 +18,8 @@ function crearBackup() {
     backup.push(tiendas);
     var json = JSON.stringify(backup);
 
-    var xmlhttp = new XMLHttpRequest();
-    xmlhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            console.log("enviado");
-        }
-    };
-    xmlhttp.open("POST", "backup.php", true);
-    xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xmlhttp.send("cadena=" + json);
+    $.post("backup.php",
+        {
+            cadena: json,
+        });
 }
